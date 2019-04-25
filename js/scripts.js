@@ -13,21 +13,35 @@ map.addControl(new mapboxgl.NavigationControl());
 // add citibike marker to the map
   citibikeStationLocation.forEach(function(eachSatation) {
     // Create a DOM element for the marker
-    val el = document.createElement('div');
-    el.className = 'marker';
-    el.style.backgroundImage = 'url(https://imgur.com/4Pq9anB)'
-    el.style.width = 10px;
-    el.style.height = 10px;
+    // create the popup
+    var popup = new mapboxgl.Popup({ offset: 40 })
+    .setText(`${eachSatation.name}`);
 
-    // Citibike station popup
-    var popup = new mapboxgl.Popup({
-      offsit: 40}).setText(`${eachSatation.name}`)
+    // create DOM element for the marker
+    var el = document.createElement('div');
+    el.id = 'marker';
 
-    // add marker to map
-    new mapboxgl.marker(el)
+    // create the marker
+    new mapboxgl.Marker(el)
     .setLngLat([eachSatation.longitude, eachSatation.latitude])
-    .setPopup(popup)
-    .addTo(map)
+    .setPopup(popup) // sets a popup on this marker
+    .addTo(map);
+
+    // val el = document.createElement('div');
+    // el.className = 'marker';
+    // el.style.backgroundImage = 'url(https://imgur.com/4Pq9anB)'
+    // el.style.width = 10px;
+    // el.style.height = 10px;
+    //
+    // // Citibike station popup
+    // var popup = new mapboxgl.Popup({
+    //   offsit: 40}).setText(`${eachSatation.name}`)
+    //
+    // // add marker to map
+    // new mapboxgl.marker(el)
+    // .setLngLat([eachSatation.longitude, eachSatation.latitude])
+    // .setPopup(popup)
+    // .addTo(map)
   })
 
 
