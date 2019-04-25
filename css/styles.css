@@ -36,6 +36,15 @@
   box-shadow: 1px 1px 7px #525252;
   margin-bottom:15px
 }
+
+.marker {
+background-image: './image/bike.png'
+display: block;
+border: none;
+border-radius: 50%;
+cursor: pointer;
+padding: 0;
+}
 /*
 #marker {
 background-image: url('https://imgur.com/4Pq9anB');

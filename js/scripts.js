@@ -2126,10 +2126,28 @@ map.addControl(new mapboxgl.NavigationControl());
         offset: 40 })
         .setText(`${citibikeStation.name}`);
 
-        new mapboxgl.Marker()
-        .setLngLat([citibikeStation.longitude, citibikeStation.latitude])
-        .setPopup(popup)
-        .addTo(map);
+    var el = document.createElement('div');
+    el.className = 'marker';
+    el.style.backgroundImage = './image/bike.png';
+    el.style.width = 25;
+    el.style.height = 25;
+
+
+    // add marker to map
+    new mapboxgl.Marker(el)
+    .setLngLat([citibikeStation.longitude, citibikeStation.latitude])
+    .setPopup(popup)
+    .addTo(map);
+
+    // el.addEventListener('click', function() {
+    // window.alert(marker.properties.message);
+    // });
+    // new mapboxgl.Marker()
+    // .setLngLat([citibikeStation.longitude, citibikeStation.latitude])
+    // .setPopup(popup)
+    // .addTo(map);
+    // create a DOM element for the marker
+
     })
 
 
@@ -2153,15 +2171,15 @@ map.on('style.load', function() {
     }
   })
 
-  map.addLayer({
-  id: 'highlight-line',
-  type: 'line',
-  source: 'highlight-feature',
-  paint: {
-    'line-width': 3,
-    'line-opacity': 0.9,
-    'line-color': 'black',
-    }
-  });
+  // map.addLayer({
+  // id: 'highlight-line',
+  // type: 'line',
+  // source: 'highlight-feature',
+  // paint: {
+  //   'line-width': 3,
+  //   'line-opacity': 0.9,
+  //   'line-color': 'black',
+  //   }
+  // });
 
 })
