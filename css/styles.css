@@ -5,6 +5,13 @@
   bottom:0;
   width:100%;
 } */
+body{
+  background-color: #fff;
+}
+h1, h2 {
+  font-family: fantasy
+}
+
 #mapContainer {
   height: 100%;
   width: 100%;
@@ -25,26 +32,43 @@
   padding: 15px;
   -webkit-box-shadow: 9px 9px 15px 8px rgba(0,0,0,0.43);
   box-shadow: 9px 9px 15px 8px rgba(0,0,0,0.43);
+  border-radius: 11px;
 }
 .info-box {
-  top: 25px;
-  left: 25px;
+  top: 35px;
+  left: 35px;
   z-index: 10;
-  background-color: #c3c3c3;
+  background-color: #FFE6E7;
   padding: 15px;
   border-radius: 11px;
   box-shadow: 1px 1px 7px #525252;
-  margin-bottom:15px
+  margin-bottom:15px;
+}
+
+button {
+  background-color: #fff;
+  width: 95px;
+  height: 45px;
+  top: 35px;
+  padding: 5px;
+  margin: 10px;
+  font-weight: 500;
+  border-radius: 15px;
+  border-radius: 11px;
+  box-shadow: 1px 1px 7px #525252;
 }
 
 .marker {
-background-image: './image/bike.png'
+background-image: url('../image/bike.png');
+background-size: contain;
 display: block;
 border: none;
-border-radius: 50%;
+border-radius: 30%;
 cursor: pointer;
 padding: 0;
 }
+
+
 /*
 #marker {
 background-image: url('https://imgur.com/4Pq9anB');

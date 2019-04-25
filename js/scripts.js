@@ -2121,7 +2121,7 @@ map.addControl(new mapboxgl.NavigationControl());
 //   'longitude': -73.96536851}]
 
 
-  citibikeStationLocation.forEach(function(citibikeStation) {
+citibikeStationLocation.forEach(function(citibikeStation) {
     var popup = new mapboxgl.Popup({
         offset: 40 })
         .setText(`${citibikeStation.name}`);
@@ -2129,33 +2129,43 @@ map.addControl(new mapboxgl.NavigationControl());
     var el = document.createElement('div');
     el.className = 'marker';
     el.style.backgroundImage = './image/bike.png';
-    el.style.width = 25;
-    el.style.height = 25;
-
+    el.style.width = 5;
+    el.style.height = 5;
 
     // add marker to map
     new mapboxgl.Marker(el)
     .setLngLat([citibikeStation.longitude, citibikeStation.latitude])
     .setPopup(popup)
     .addTo(map);
+})
 
-    // el.addEventListener('click', function() {
-    // window.alert(marker.properties.message);
-    // });
-    // new mapboxgl.Marker()
-    // .setLngLat([citibikeStation.longitude, citibikeStation.latitude])
-    // .setPopup(popup)
-    // .addTo(map);
-    // create a DOM element for the marker
-
-    })
-
+var airportLocation = {
+  'JFK_airport' : [-73.7803278, 40.6413111],
+  'EWR_airport' : [-74.1766511, 40.6895314],
+  'LGA_airport' : [-73.8761546, 40.7769271],
+}
 
 map.on('style.load', function() {
+
+  $('.flyto').on('click', function(e) {
+    var airport = $(e.target).data('airport');
+    var center = airportLocation[airport];
+    map.flyTo({center: center, zoom: 12});
+
+  })
 
   map.addSource('NYC_Taxi_Zones', {
       type: 'geojson',
       data: './data/NYC_Taxi_Zones.geojson',
+  });
+  map.addLayer({
+    id: 'taxi_zone_fill',
+    type: 'fill',
+    source: 'NYC_Taxi_Zones',
+    paint: {
+      'fill-opacity' : 0.4,
+      'fill-color' : '#fff'
+    }
   });
 
   map.addLayer({
@@ -2171,6 +2181,55 @@ map.on('style.load', function() {
     }
   })
 
+  map.addSource('highlight-feature', {
+    type: 'geojson',
+    data: {
+      type: 'FeatureCollection',
+      features: []
+    }
+  })
+
+  map.addLayer({
+    id: 'highlight-line',
+    type: 'line',
+    source: 'highlight-feature',
+    paint: {
+      'line-width' : 3,
+      'line-opacity' : 0.9,
+      'line-color' : 'black'
+    }
+  });
+
+  map.on('mousemove', function(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+        layers: ['taxi_zone_fill'],
+    });
+
+    var taxi_zone = features[0]
+    if (taxi_zone) {
+      map.getCanvas().style.cursor = 'pointer';
+      $('#zonename').text(taxi_zone.properties.zone);
+      $('#brough').text(taxi_zone.properties.borough);
+
+      map.getSource('highlight-feature').setData(taxi_zone.geometry);
+    }
+    else{
+      map.getCanvas().style.cursor = 'default';
+      map.getSource('highlight-feature').setData({
+        type: 'FeatureCollection',
+        features: []
+      });
+    }
+  })
+})
+  //
+  // map.addSource('highlight-feature'), {
+  //   type: 'geojson';
+  //   data:{
+  //
+  //   }
+  // }
+
   // map.addLayer({
   // id: 'highlight-line',
   // type: 'line',
@@ -2181,5 +2240,3 @@ map.on('style.load', function() {
   //   'line-color': 'black',
   //   }
   // });
-
-})
