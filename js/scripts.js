@@ -2129,8 +2129,8 @@ citibikeStationLocation.forEach(function(citibikeStation) {
     var el = document.createElement('div');
     el.className = 'marker';
     el.style.backgroundImage = './image/bike.png';
-    el.style.width = 10;
-    el.style.height = 10;
+    el.style.width = 7;
+    el.style.height = 7;
 
     // add marker to map
     new mapboxgl.Marker(el)
