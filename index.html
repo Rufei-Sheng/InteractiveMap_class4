@@ -13,15 +13,37 @@
   </head>
 
 <body>
+  <div id='header'>
+    <h1>Citibike Station Map in NYC</h1>
+    <h2>Explor where you can access the citibike in each taxi zone</h2>
+  <div>
 
-  <div id='mapContainer'></div>
+  <div id="mapContainer">
+    <div id="siderbar">
+      <div class="info-box">
+        <h3>Taxi zone map</h3>
+        <span id="address">Move the mouse to explor the taxi zone and zoom in to see the Citibike stations.</span>
+        <span id="taxizone"></span>
+      </div>
+
+    <!-- <div class="info-box">
+      <h3>Go to the borough</h3>
+      <button type="button" class="flyto"></button>
+    </div> -->
+      <div class="borough-legend">
+        <h3>Legend</h3>
+        <!-- <h3>Go to the borough</h3>
+        <button type="button" class="flyto"></button>   -->
+      </div>
+    </div>
+  </div>
 
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-  <script src="js/scripts.js"></script>
   <script src="js/citibikeStation.js"></script>
+  <script src="js/scripts.js"></script>
 </body>
 </html>

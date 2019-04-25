@@ -9,32 +9,24 @@ var map = new mapboxgl.Map({
 
 map.addControl(new mapboxgl.NavigationControl());
 
-// do all the customerized things after base map prepared
-map.on('style.load', function() {
-  map.addSource('green_pluto', {
-    type: 'geojson',
-    data: './data/pluto.geojson.json',
-  });
-  map.addLayer({
-    id: 'green_pluto fill',
-    type: 'fill',
-    source: 'green_pluto',
-    paint: {
-      'fill-opacity' : 0.7,
-      'fill-color' :{
-        type: 'categorical',
-        property: 'Landuse',
-        // array of array: what value should be and what color should be
-        stops: [
-          ['01', 'blue'],
-          ['02', 'green']
-        ]
-      }
+// add citibike marker to the map
+citibikeStationLocation.forEach(function(eachSatation) {
+  // Create a DOM element for the marker
+  val el = document.createElement('div');
+  el.className = 'marker';
+  el.style.backgroundImage = 'url(https://imgur.com/4Pq9anB)'
+  el.style.width = 10px;
+  el.style.height = 10px;
 
-    }
+  // Citibike station popup
+  var popup = new mapboxgl.Popup({
+    offsit: 40}).setText(`${eachSatation.name}`)
 
-  })
-
-// id write before {}?
-
+  // add marker to map
+  new mapboxgl.marker(el)
+  .setLngLat([eachSatation.longitude, eachSatation.latitude])
+  .setPopup(popup)
+  .addTo(map)
 })
+
+// do all the customerized things after base map prepared
