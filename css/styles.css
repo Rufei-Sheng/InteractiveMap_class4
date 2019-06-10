@@ -20,7 +20,7 @@ h1, h2 {
 }
 
 .sidebar {
-  width: 200px;
+  width: 300px;
   position: absolute;
   /* background-color: #63BCFF; */
   background-color: #E6F7FF;
@@ -47,19 +47,26 @@ h1, h2 {
 
 button {
   background-color: #fff;
-  width: 95px;
-  height: 45px;
+  width: 55px;
+  height: 50px;
   top: 35px;
   padding: 5px;
-  margin: 10px;
+  margin: 0px;
   font-weight: 500;
   border-radius: 15px;
-  border-radius: 11px;
   box-shadow: 1px 1px 7px #525252;
 }
 
+.legend-color-box {
+  height: 15px;
+  width: 15px;
+  float: left;
+  margin-right: 10px;
+}
+
+
 .marker {
-background-image: url('../image/bike.png');
+background-image: url('../image/subway.png');
 background-size: contain;
 display: block;
 border: none;
@@ -68,6 +75,22 @@ cursor: pointer;
 padding: 0;
 }
 
+text {
+    font: 12px sans-serif;
+}
+
+/* #piechart {
+  position: fixed;
+  top: 0;
+  left: 0;
+} */
+
+/* svg {
+    display: block;
+    float: left;
+    height: 35px;
+    width: 35px;
+} */
 
 /*
 #marker {
